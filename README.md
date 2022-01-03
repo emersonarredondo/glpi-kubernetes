@@ -1,4 +1,11 @@
-# glpi-kubernetes
+# deploy GLPI with Kubernetes
+
+#Requirements
+##Kubectl client and config file
+```kubectl version
+   kubectl config view
+```
+
 
 # Environnment variables
 This Environnment variables can you use deployment.yaml or DockerCompose 
