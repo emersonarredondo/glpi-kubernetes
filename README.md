@@ -30,7 +30,7 @@ Check secret
    ```kubetctl  apply -f service.yaml ``` 
     ```kubectl  get svc glpi```
     ```kubectl  get svc glpi```
- ##Create ingress witch custom cert and private tls
+ ## Create ingress witch custom cert and private tls
  ``` kubectl create secret tls tls.domain.pe \
     --cert domain.crt --key domain.key``` 
  ## Apply ingress
