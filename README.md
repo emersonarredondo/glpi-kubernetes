@@ -58,3 +58,5 @@ example 9.5.6 Version 10.0.0-beta may not work in this case, use the installatio
 ## GLPI_DBNAME
     Set your database Name 
 #
+ [Ref Diuoux ](https://github.com/DiouxX/docker-glpi)
+  [Ref GLPI CLI ](https://glpi-install.readthedocs.io/en/latest/command-line.html)
