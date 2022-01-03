@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: glpi
+  namespace: default
+  labels:
+    app: glpi
+spec:
+  selector:
+    matchLabels:
+      app: glpi
+  replicas: 1 
+  template: 
+    metadata:
+      labels:
+        app: glpi
+    spec:
+      volumes:
+          - name: glpi-claim
+            persistentVolumeClaim:
+              claimName: glpi-claim
+      hostname: glpi
+      containers:
+      - name: glpi
+        image: emersonarredondo/glpi:9.5.6
+        env:
+        - name: TIMEZONE
+          value: "America/Lima"
+        - name: LANG
+          value: "es_419"
+        - name: VERSION_GLPI
+          value: "9.5.6"              
+        - name: GLPI_DB_HOSTNAME
+          valueFrom:
+            secretKeyRef:
+              name: glpi-secrets
+              key: GLPI_DB_HOSTNAME
+        - name: GLPI_DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: glpi-secrets
+              key: GLPI_DB_USER
+        - name: GLPI_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: glpi-secrets
+              key: GLPI_DB_PASSWORD
+        - name: GLPI_DBNAME
+          valueFrom:
+            secretKeyRef:
+              name: glpi-secrets
+              key: GLPI_DBNAME
+        ports:
+        - containerPort: 80
+          name: http
+        volumeMounts:
+        - mountPath: /var/www/html/
+          name: glpi-claim
+          subPath: glpidata
+    

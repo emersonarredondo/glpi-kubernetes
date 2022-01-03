@@ -1,0 +1,22 @@
+version: "3.2"
+
+services:
+#GLPI Container
+  glpi:
+    image: emersonarredondo/glpi
+    container_name : glpi
+    hostname: glpi
+    ports:
+      - "80:80"
+    volumes:
+      - /var/www/html/glpi/:/var/www/html/glpi
+    environment:
+      - TIMEZONE=America/Lima
+      - LANG=es_419
+      - VERSION_GLPI=9.5.6
+      #Change hostname o ip mysql server
+      - GLPI_DB_HOSTNAME=mysql.domain.com
+      - GLPI_DB_USER=root
+      - GLPI_DB_PASSWORD=ChangemePlease!
+      - GLPI_DBNAME=glpidb 
+    restart: always

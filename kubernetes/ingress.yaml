@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: glpi-ingress
+spec:
+  tls:
+  - secretName: tls-domain
+  rules:
+  - host: "glpi.domain.com"
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: glpi
+            port:
+              name:
+              number: 80
